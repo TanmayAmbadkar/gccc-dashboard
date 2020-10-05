@@ -22,6 +22,7 @@ class College(models.Model):
         self.results = f'csv/{self.short_name}_results.csv'
         self.stamp = timezone.now()
         self.save()
+        del results
         print('task finished')
 
 

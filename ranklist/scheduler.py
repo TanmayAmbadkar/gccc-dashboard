@@ -6,5 +6,5 @@ def start_job():
     scheduler = BackgroundScheduler()
     colleges = College.objects.all()
     for college in colleges:
-        scheduler.add_job(college.get_results, 'interval', minutes=1)
+        scheduler.add_job(college.get_results, 'interval', minutes=20)
     scheduler.start()

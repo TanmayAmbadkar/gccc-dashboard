@@ -25,7 +25,7 @@ SECRET_KEY = '*myfet+_ueddvh+wt%e_n&q93mc#o_-64dhvu0+s0kpt!3nzfl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ec2-3-15-187-81.us-east-2.compute.amazonaws.com']
 
 
 # Application definition

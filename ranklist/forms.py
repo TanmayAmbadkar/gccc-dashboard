@@ -5,7 +5,7 @@ class CollegeForm(forms.ModelForm):
 
     class Meta():
         model = College
-        fields = '__all__'
+        fields = ['short_name', 'long_name', 'description', 'email', 'csv', ]
 
         widgets = {
             'description' : forms.Textarea(),

@@ -36,7 +36,8 @@ gunicorn==20.0.4
 h5py==2.10.0
 idna==2.9
 importlib-metadata==1.6.0
-jmespath==0.9.5ldif3==3.1.1
+jmespath==0.9.5
+ldif3==3.1.1
 numpy==1.18.5
 oauthlib==3.1.0
 opt-einsum==3.2.1

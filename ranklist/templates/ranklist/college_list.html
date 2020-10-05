@@ -1,0 +1,19 @@
+{% extends "ranklist/base.html" %}
+{%  load static %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h1 class="display-4">List of colleges</h1>
+  <hr class="my-4">
+
+  {% for college in college_list %}
+      <p class="lead">Name : {{college.short_name}}</p>
+      <p class="lead"><a href="{% url 'college' pk=college.pk %}">View Ranklist! </a></p>
+      <hr class="my-4">
+
+  {% endfor %}
+  <p>Click here to go back home</p>
+  <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
+</div>
+{% endblock %}

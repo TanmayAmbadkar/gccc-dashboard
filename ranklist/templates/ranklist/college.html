@@ -1,0 +1,53 @@
+{% extends "ranklist/base.html" %}
+{%  load static %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h1 class="display-4">{{college.long_name}}</h1>
+  <hr class="my-4">
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Position</th>
+        <th scope="col">Name</th>
+        <th scope="col">Labs</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for person in labs %}
+          <tr>
+
+            <th scope="row">{{person.position}}</th>
+            <td>{{person.name}}</td>
+            <td>{{person.labs}}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Position</th>
+          <th scope="col">Name</th>
+          <th scope="col">Quest</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for person in quests %}
+            <tr>
+
+              <th scope="row">{{person.position}}</th>
+              <td>{{person.name}}</td>
+              <td>{{person.quests}}</td>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  <p>Click here to go back home</p>
+  <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
+</div>
+
+{% endblock %}

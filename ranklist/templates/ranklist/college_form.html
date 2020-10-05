@@ -1,0 +1,21 @@
+{% extends 'ranklist/base.html' %}
+
+{% block content %}
+<section class="site-section py-lg">
+  <div class="jumbotron">
+        <h1>Enter the details</h1>
+        <form class="post-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <button type="submit" class="btn btn-success" name="button">Upload</button>
+
+        </form>
+
+  </div>
+
+  </section>
+
+
+
+{% endblock %}

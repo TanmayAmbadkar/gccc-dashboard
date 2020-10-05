@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from ranklist.forms import *
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
+import pandas as pd
 
 
 # Create your views here.
@@ -26,7 +27,7 @@ class RanklistDetailView(DetailView):
 
          context = super(RanklistDetailView, self).get_context_data(**kwargs)
          college = College.objects.get(pk = self.kwargs['pk'])
-         data = college.get_results()
+         data = pd.read_csv(college.results)
          context['college'] = college
          labs, quests = get_results(data, college)
 

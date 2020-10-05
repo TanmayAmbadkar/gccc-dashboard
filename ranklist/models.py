@@ -10,10 +10,14 @@ class College(models.Model):
     description = models.TextField()
     email = models.EmailField(max_length=100)
     csv = models.FileField(upload_to='csv')
+    results = models.FileField(upload_to='csv', null=True, blank=True)
 
     def get_results(self):
 
-        return  execute(self.csv)
+        results = execute(self.csv)
+        results.to_csv(f'media/csv/{self.short_name}_results.csv')
+        self.results = f'media/csv/{self.short_name}_results.csv'
+
 
 class QuestPosition(models.Model):
 

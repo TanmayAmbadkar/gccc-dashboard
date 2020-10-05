@@ -25,6 +25,8 @@ def getDetailsForProfile(url):
 
 def execute(filename):
 
+    print()
+    print(filename)
     data = pd.read_csv(filename)
 
     i=0
@@ -35,6 +37,7 @@ def execute(filename):
         labs.append(out[0])
         quests.append(out[1])
         print(f'\r{i+1}/{len(data)}', end = '')
+    print()
     data['labs']=labs
     data['quests']=quests
 

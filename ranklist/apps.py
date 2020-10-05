@@ -6,5 +6,5 @@ class RanklistConfig(AppConfig):
 
     def ready(self):
         from ranklist import scheduler
-        scheduler.start()
-        print("Scheduler started")
+        scheduler.start_job()
+        print("Started")

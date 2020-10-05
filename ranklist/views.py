@@ -53,7 +53,6 @@ def get_results(data, college):
 
     quest = []
     i=1
-    print(len(quests))
     for name, quests in zip(quests['Name'], quests['quests']):
 
         obj, created = QuestPosition.objects.get_or_create(college = college,

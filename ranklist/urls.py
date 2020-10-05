@@ -8,6 +8,7 @@ urlpatterns = [
     path('', HomeView.as_view(), name = 'home'),
     path('forms', CollegeFormView.as_view(), name = 'form'),
     path('colleges', CollegeListView.as_view(), name = 'list'),
+    
 
 
 

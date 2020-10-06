@@ -9,7 +9,7 @@ from ranklist.forms import *
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
 import pandas as pd
-
+import os
 
 # Create your views here.
 
@@ -73,6 +73,9 @@ class CollegeFormView(CreateView):
     success_url = reverse_lazy('list')
     form_class = CollegeForm
     model = College
+
+    def form_valid(self, form):
+        os.system('sudo service apache2 restart')
 
 class CollegeListView(ListView):
 

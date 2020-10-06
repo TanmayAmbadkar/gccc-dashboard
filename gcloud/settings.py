@@ -23,7 +23,7 @@ TEMPLATE_DIR = BASE_DIR / 'ranklist/templates/ranklist'
 SECRET_KEY = '*myfet+_ueddvh+wt%e_n&q93mc#o_-64dhvu0+s0kpt!3nzfl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'ec2-3-15-187-81.us-east-2.compute.amazonaws.com', 'gccc-ranklist.tk']
 
@@ -119,8 +119,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
-#STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [BASE_DIR / 'staticfiles']
+#STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT =  BASE_DIR / 'media'

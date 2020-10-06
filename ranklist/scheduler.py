@@ -7,5 +7,5 @@ def start_job():
     colleges = College.objects.all()
     print("Number of jobs = ", len(colleges))
     for college in colleges:
-        scheduler.add_job(college.get_results, 'interval', minutes=20)
+        scheduler.add_job(college.get_results, 'interval', minutes=30)
     scheduler.start()

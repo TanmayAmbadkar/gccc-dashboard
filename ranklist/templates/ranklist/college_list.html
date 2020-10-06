@@ -8,8 +8,8 @@
   <hr class="my-4">
 
   {% for college in college_list %}
-      <p class="lead">Name : {{college.short_name}}</p>
-      <p class="lead"><a href="{% url 'college' pk=college.pk %}">View Ranklist! </a></p>
+      <p class="lead">Name : {{college.long_name}}</p>
+      <p class="lead"><a href="{% url 'college' pk=college.short_name %}">View Ranklist! </a></p>
       <hr class="my-4">
 
   {% endfor %}

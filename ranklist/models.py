@@ -7,7 +7,7 @@ from django.utils import timezone
 
 class College(models.Model):
 
-    short_name = models.CharField(max_length = 20)
+    short_name = models.CharField(max_length = 20, primary_key=True)
     long_name = models.CharField(max_length = 200)
     description = models.TextField()
     email = models.EmailField(max_length=100)
@@ -25,17 +25,21 @@ class College(models.Model):
         del results
         print('task finished')
 
+    def __str__(self):
+
+        return self.short_name
+
 
 class QuestPosition(models.Model):
 
-    college = models.ForeignKey(College, on_delete=models.CASCADE)
+    col = models.ForeignKey(College, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     quests = models.IntegerField()
     position = models.IntegerField()
 
 class LabsPosition(models.Model):
 
-    college = models.ForeignKey(College, on_delete=models.CASCADE)
+    col = models.ForeignKey(College, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     labs = models.IntegerField()
     position = models.IntegerField()

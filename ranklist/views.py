@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from ranklist.forms import *
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
+from apscheduler.schedulers.background import BackgroundScheduler
 import pandas as pd
 import os
 
@@ -26,13 +27,14 @@ class RanklistDetailView(DetailView):
     def get_context_data(self, **kwargs):
 
          context = super(RanklistDetailView, self).get_context_data(**kwargs)
-         college = College.objects.get(pk = self.kwargs['pk'])
-         data = pd.read_csv(college.results)
-         context['college'] = college
-         labs, quests = get_results(data, college)
+         college = College.objects.get(short_name = self.kwargs['pk'])
+         if college.results:
+             data = pd.read_csv(college.results)
+             context['college'] = college
+             labs, quests = get_results(data, college)
 
-         context['labs']=labs
-         context['quests']=quests
+             context['labs']=labs
+             context['quests']=quests
 
          return context
 
@@ -44,10 +46,10 @@ def get_results(data, college):
     lab = []
     for name, labs in zip(labs['Name'], labs['labs']):
 
-        obj, created = LabsPosition.objects.get_or_create(college = college,
-                                                 name = name,
-                                                 labs = labs,
-                                                 position = i)
+        obj, created = LabsPosition.objects.get_or_create(col = college,
+                                                            name = name,
+                                                            labs = labs,
+                                                            position = i)
         i+=1
         lab.append(obj)
 
@@ -55,10 +57,10 @@ def get_results(data, college):
     i=1
     for name, quests in zip(quests['Name'], quests['quests']):
 
-        obj, created = QuestPosition.objects.get_or_create(college = college,
-                                                 name = name,
-                                                 quests = quests,
-                                                 position = i)
+        obj, created = QuestPosition.objects.get_or_create(col = college,
+                                                            name = name,
+                                                            quests = quests,
+                                                            position = i)
         i+=1
         quest.append(obj)
 
@@ -75,7 +77,15 @@ class CollegeFormView(CreateView):
     model = College
 
     def form_valid(self, form):
-        os.system('sudo service apache2 restart')
+
+        form.instance.save()
+        scheduler = BackgroundScheduler()
+        scheduler.add_job(form.instance.get_results, 'interval', minutes=20)
+        scheduler.start()
+        print("New job started")
+
+
+        return super().form_valid(form)
 
 class CollegeListView(ListView):
 

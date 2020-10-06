@@ -2,7 +2,7 @@
 {%  load static %}
 
 {% block content %}
-
+{% if college.results %}
 <div class="jumbotron">
   <h1 class="display-4">{{college.long_name}}</h1>
   <hr class="my-4">
@@ -57,5 +57,16 @@
   <p>Click here to go back home</p>
   <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
 </div>
+{% else %}
+<div class="jumbotron">
+  <h1 class="display-4">{{college.long_name}}</h1>
+  <p class='lead'>Fetching results, please wait!!</p>
+  <hr class="my-4">
+
+  <p>Click here to go back home</p>
+  <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
+{% endif %}
+
+
 
 {% endblock %}

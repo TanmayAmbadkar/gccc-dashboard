@@ -2,6 +2,7 @@ from django.db import models
 from ranklist.get_list import *
 from datetime import datetime
 from django.utils import timezone
+from gcloud import settings
 
 # Create your models here.
 
@@ -18,7 +19,7 @@ class College(models.Model):
     def get_results(self):
 
         results = execute(self.csv)
-        results.to_csv(f'csv/{self.short_name}_results.csv')
+        results.to_csv(settings.MEDIALFILES_DIR / f'csv/{self.short_name}_results.csv')
         self.results = f'csv/{self.short_name}_results.csv'
         self.stamp = timezone.now()
         self.save()

@@ -30,7 +30,7 @@ def execute(filename):
         data = pd.read_csv(filename)
     except:
         print('Error occured')
-        return 
+        return
     i=0
     labs = []
     quests = []
@@ -42,7 +42,7 @@ def execute(filename):
     print()
     data['labs']=labs
     data['quests']=quests
-
+    print(data)
     return data
 
 if __name__ == '__main__':

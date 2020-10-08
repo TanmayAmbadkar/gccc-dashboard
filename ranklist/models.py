@@ -19,7 +19,11 @@ class College(models.Model):
     def get_results(self):
 
         results = execute(self.csv)
-        results.to_csv(settings.MEDIALFILES_DIR / f'csv/{self.short_name}_results.csv'
+        with open(settings.MEDIALFILES_DIR / f'csv/{self.short_name}_results.csv', "w") as f:
+            results.to_csv(f)
+        results.to_csv(self.csv)
+
+#        results.to_csv(settings.MEDIALFILES_DIR / f'csv/{self.short_name}_results.csv')
         self.results = f'csv/{self.short_name}_results.csv'
         self.stamp = timezone.now()
         self.save()

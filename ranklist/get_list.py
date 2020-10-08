@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
-import os
+import time
 
 quests = ['Explore Machine Learning Models with Explainable AI',
           'Integrate with Machine Learning APIs',
@@ -49,11 +49,11 @@ def getDetailsForProfile(url):
 def execute(filename='test_urls.csv'):
 
     print(filename)
-    try:
-        data = pd.read_csv(filename)
-    except:
-        print('Error occured')
-        return
+    #try:
+    data = pd.read_csv(filename)
+    #except:
+    #    print('Error occured')
+    #    return
 
     i=0
     labs = []

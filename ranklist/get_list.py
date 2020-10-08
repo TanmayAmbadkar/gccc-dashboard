@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
+import os
 
 quests = ['Explore Machine Learning Models with Explainable AI',
           'Integrate with Machine Learning APIs',
@@ -53,9 +54,11 @@ def execute(filename='test_urls.csv'):
     except:
         print('Error occured')
         return
+
     i=0
     labs = []
     quests = []
+    start_time = time.time()
     for i in range(len(data)):
         out = getDetailsForProfile(data['URL'][i])
         labs.append(out[0])
@@ -64,6 +67,9 @@ def execute(filename='test_urls.csv'):
     print()
     data['labs']=labs
     data['quests']=quests
+
+    diff = time.time() - start_time
+    print("Finished in", int(diff/60), "min", "{:7.4f}".format(float(diff%60)), "sec")
     return data
 
 if __name__ == '__main__':

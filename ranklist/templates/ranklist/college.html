@@ -3,60 +3,66 @@
 
 {% block content %}
 {% if college.results %}
-<div class="jumbotron">
-  <h1 class="display-4">{{college.long_name}}</h1>
-  <hr class="my-4">
-  <div class="row">
-  <div class="col-sm">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Position</th>
-            <th scope="col">Name</th>
-            <th scope="col">Labs</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for person in labs %}
-              <tr>
 
-                <th scope="row">{{person.position}}</th>
-                <td>{{person.name}}</td>
-                <td>{{person.labs}}</td>
-              </tr>
-            {% endfor %}
-        </tbody>
-      </table>
-  </div>
-  <div class="col-sm">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Position</th>
-            <th scope="col">Name</th>
-            <th scope="col">Quest</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for person in quests %}
-              <tr>
+<div class="jumbotron" id="canvas-wrap" style=" position:relative;">
 
-                <th scope="row">{{person.position}}</th>
-                <td>{{person.name}}</td>
-                <td>{{person.quests}}</td>
-              </tr>
-            {% endfor %}
-        </tbody>
-      </table>
+<div class='container' >
+    <h1 class="display-4">{{college.long_name}}</h1>
+    <hr class="my-4">
+    <div class="row">
+        <div class="col-md">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Position</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Labs</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for person in labs %}
+                    <tr>
+
+                      <th scope="row">{{person.position}}</th>
+                      <td>{{person.name}}</td>
+                      <td>{{person.labs}}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        <div class="col-md">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Position</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Quest</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {% for person in quests %}
+                    <tr>
+
+                      <th scope="row">{{person.position}}</th>
+                      <td>{{person.name}}</td>
+                      <td>{{person.quests}}</td>
+                    </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+    <p>These results were fetched on : {{college.stamp}}
+    <p>Click here to go back home</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
   </div>
+  <canvas id="confetti-holder" style="position:absolute; top:0; left:0; z-index:0;">
+  </canvas>
+
 </div>
 
-
-
-  <p>These results were fetched on : {{college.stamp}}
-  <p>Click here to go back home</p>
-  <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
-</div>
 {% else %}
 <div class="jumbotron">
   <h1 class="display-4">{{college.long_name}}</h1>

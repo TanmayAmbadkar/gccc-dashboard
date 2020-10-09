@@ -10,5 +10,5 @@ def start_job():
     i = 0
     for college in colleges:
         now = datetime.datetime.now() + datetime.timedelta(i*10)
-        scheduler.add_job(college.get_results, 'interval', start_date = str(now)[:-7], minutes=5)
+        scheduler.add_job(college.get_results, 'interval', start_date = str(now)[:-7], minutes=100)
     scheduler.start()

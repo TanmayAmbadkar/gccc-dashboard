@@ -13,14 +13,12 @@ class College(models.Model):
     description = models.TextField()
     email = models.EmailField(max_length=100)
     csv = models.FileField(upload_to='csv')
-    results = models.FileField(upload_to='csv', null=True, blank=True)
     stamp = models.DateTimeField(blank=True, null=True)
+    results = models.BooleanField(default=False)
 
     def get_results(self):
 
-        results = execute(self.csv)
-        results.to_csv(settings.MEDIALFILES_DIR / f'csv/{self.short_name}_results.csv'
-        self.results = f'csv/{self.short_name}_results.csv'
+        execute(self)
         self.stamp = timezone.now()
         self.save()
         print('task finished')
@@ -28,6 +26,18 @@ class College(models.Model):
     def __str__(self):
 
         return self.short_name
+
+class Student(models.Model):
+
+    col = models.ForeignKey(College, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    quests = models.IntegerField(default=0)
+    labs = models.IntegerField(default=0)
+    url = models.URLField(max_length = 200)
+
+    def __str__(self):
+
+        return self.name
 
 
 class QuestPosition(models.Model):

@@ -5,3 +5,4 @@ from ranklist.models import *
 admin.site.register(College)
 admin.site.register(QuestPosition)
 admin.site.register(LabsPosition)
+admin.site.register(Student)

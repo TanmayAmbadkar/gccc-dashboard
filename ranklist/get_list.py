@@ -2,6 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import os
+import time
+
+import ranklist.models
 
 quests = ['Explore Machine Learning Models with Explainable AI',
           'Integrate with Machine Learning APIs',
@@ -42,35 +45,25 @@ def getDetailsForProfile(url):
 
 
     labs_quests = labs_quests_p.text.strip().rsplit("\n")
-
     return int(labs_quests[0]), c
 
 
-def execute(filename='test_urls.csv'):
+def execute(college):
 
-    print(filename)
-    try:
-        data = pd.read_csv(filename)
-    except:
-        print('Error occured')
-        return
-
-    i=0
-    labs = []
-    quests = []
+    students = ranklist.models.Student.objects.filter(col=college)
     start_time = time.time()
-    for i in range(len(data)):
-        out = getDetailsForProfile(data['URL'][i])
-        labs.append(out[0])
-        quests.append(out[1])
-        print(f'\r{i+1}/{len(data)}', end = '')
-    print()
-    data['labs']=labs
-    data['quests']=quests
+    i=1
+    for student in students:
+        out = getDetailsForProfile(student.url)
+        student.labs = out[0]
+        student.quests = out[1]
+        student.save()
+        print(f'\r{i+1}/{len(students)}', end = '')
+        i+=1
 
     diff = time.time() - start_time
     print("Finished in", int(diff/60), "min", "{:7.4f}".format(float(diff%60)), "sec")
-    return data
+    college.results = True
 
 if __name__ == '__main__':
     execute()

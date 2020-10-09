@@ -28,45 +28,17 @@ class RanklistDetailView(DetailView):
 
          context = super(RanklistDetailView, self).get_context_data(**kwargs)
          college = College.objects.get(short_name = self.kwargs['pk'])
+         context['college'] = college
          if college.results:
-             data = pd.read_csv(college.results)
-             context['college'] = college
-             labs, quests = get_results(data, college)
+
+             labs = Student.objects.filter(col = college).order_by('-labs')[:5]
+             quests = Student.objects.filter(col = college).order_by('-quests')[:5]
+
 
              context['labs']=labs
              context['quests']=quests
 
          return context
-
-def get_results(data, college):
-
-    labs = data.sort_values(by = ['labs'], ascending=False)[:5]
-    quests = data.sort_values(by = ['quests'], ascending=False)[:5]
-    i = 1
-    lab = []
-    for name, labs in zip(labs['Name'], labs['labs']):
-
-        obj, created = LabsPosition.objects.get_or_create(col = college,
-                                                            name = name,
-                                                            labs = labs,
-                                                            position = i)
-        i+=1
-        lab.append(obj)
-
-    quest = []
-    i=1
-    for name, quests in zip(quests['Name'], quests['quests']):
-
-        obj, created = QuestPosition.objects.get_or_create(col = college,
-                                                            name = name,
-                                                            quests = quests,
-                                                            position = i)
-        i+=1
-        quest.append(obj)
-
-    return lab, quest
-
-
 
 
 class CollegeFormView(CreateView):
@@ -79,8 +51,12 @@ class CollegeFormView(CreateView):
     def form_valid(self, form):
 
         form.instance.save()
+        data = pd.read_csv(form.instance.csv)
+        for i in range(len(data)):
+            obj = Student.objects.create(col = form.instance, name = data['Name'][i], url = data['URL'][i], quests = 0, labs = 0)
+            print(obj)
         scheduler = BackgroundScheduler()
-        scheduler.add_job(form.instance.get_results, 'interval', minutes=20)
+        scheduler.add_job(form.instance.get_results, 'interval', minutes=2)
         scheduler.start()
         print("New job started")
 

@@ -33,7 +33,13 @@ class RanklistDetailView(DetailView):
 
              labs = Student.objects.filter(col = college).order_by('-labs')[:5]
              quests = Student.objects.filter(col = college).order_by('-quests')[:5]
-
+             i=1
+             for stud1, stud2 in zip(labs, quests):
+                 stud1.position = i
+                 stud2.position = i
+                 i+=1
+                 stud1.save()
+                 stud2.save()
 
              context['labs']=labs
              context['quests']=quests
@@ -56,7 +62,7 @@ class CollegeFormView(CreateView):
             obj = Student.objects.create(col = form.instance, name = data['Name'][i], url = data['URL'][i], quests = 0, labs = 0)
             print(obj)
         scheduler = BackgroundScheduler()
-        scheduler.add_job(form.instance.get_results, 'interval', minutes=2)
+        scheduler.add_job(form.instance.get_results, 'interval', minutes=5)
         scheduler.start()
         print("New job started")
 

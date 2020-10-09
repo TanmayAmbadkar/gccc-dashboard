@@ -34,6 +34,7 @@ class Student(models.Model):
     quests = models.IntegerField(default=0)
     labs = models.IntegerField(default=0)
     url = models.URLField(max_length = 200)
+    position = models.IntegerField(default = 1000)
 
     def __str__(self):
 

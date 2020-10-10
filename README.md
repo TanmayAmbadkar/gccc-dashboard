@@ -8,7 +8,7 @@ This project was designed to maintain a ranklist of students participating in th
 |xxxx|Name 2|public profile URL|
 
 
-You can check out the deployed website [Here!](gccc-ranklist.tk)
+You can check out the deployed website [Here!](http://gccc-ranklist.tk)
 
 
 # New Features!

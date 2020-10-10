@@ -1,15 +1,21 @@
-# gccc-dashboard
+# Ranklist for 30 days of Cloud by google 
 
-This project was designed to maintain a ranklist of students participating in the 30 days of cloud by Google. I am scraping the profiles collected for my institute and displaying the ranklist. I would like to add one more college just to test if the service breaks or still works. If anyone is interested, just drop an issue here saying you would like to add your college to the list.
+This project was designed to maintain a ranklist of students participating in the 30 days of cloud by Google. I am scraping the profiles collected for my institute and displaying the ranklist. I would like to add one more college just to test if the service breaks or still works. If anyone is interested, just drop an issue here saying you would like to add your college to the list. Make a csv file with the following columns: 
 
-You can check out the deployed website [gccc-ranklist.tk](Here!)
+|Timestamp|Name|URL|
+|---|---|---|
+|xxxx|Name 1|public profile URL|
+|xxxx|Name 2|public profile URL|
+
+
+You can check out the deployed website [Here!](gccc-ranklist.tk)
 
 
 # New Features!
 
   - Multiple college support
   - Removed the use of csv for scraping
-  - Added animations and confetti to the ranklist [http://gccc-ranklist.tk/iiitv/](Go check it out!)
+  - Added animations and confetti to the ranklist [Go check it out!](http://gccc-ranklist.tk/iiitv/)
 
 ### Tech
 

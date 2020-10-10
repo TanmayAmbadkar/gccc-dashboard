@@ -1,11 +1,21 @@
-# gccc-dashboard
+# Ranklist for 30 days of Cloud by google 
 
-This project is very much in beta right now. It basically scrapes data from qwiklabs every 20 minutes, and updates the ranklist. It should work for multiple colleges.
+This project was designed to maintain a ranklist of students participating in the 30 days of cloud by Google. I am scraping the profiles collected for my institute and displaying the ranklist. I would like to add one more college just to test if the service breaks or still works. If anyone is interested, just drop an issue here saying you would like to add your college to the list. Make a csv file with the following columns: 
+
+|Timestamp|Name|URL|
+|---|---|---|
+|xxxx|Name 1|public profile URL|
+|xxxx|Name 2|public profile URL|
+
+
+You can check out the deployed website [Here!](gccc-ranklist.tk)
 
 
 # New Features!
 
-  - multicollege support
+  - Multiple college support
+  - Removed the use of csv for scraping
+  - Added animations and confetti to the ranklist [Go check it out!](http://gccc-ranklist.tk/iiitv/)
 
 ### Tech
 
@@ -42,11 +52,19 @@ $ pip install -r requirements.txt
 
 To test the app
 
+First edit the apps.py file in the ranklist directory. Comment out the entire function *def ready()* and then run the following command
+
 ```sh
-$ python manage.py makemigration && python manage.py migrate
+$ python manage.py makemigrations ranklist && python manage.py migrate
+$ python manage.py createsuperuser
+```
+Now uncomment the previously commented function and run the following command
+```sh
 $ python manage.py runserver
 ```
+Open a browser tab and write http://localhost:8000/ to see the website.
 
-If you want to deploy the app, you can use the following tutorial to deploy it on an AWS server using apache - [tutorial](https://medium.com/saarthi-ai/ec2apachedjango-838e3f6014ab)
+If you want to deploy the app, you can use the following tutorial to deploy it on an AWS EC2 machine using apache - [tutorial](https://medium.com/saarthi-ai/ec2apachedjango-838e3f6014ab) 
+
 
 If you'd like to contribute, just make an issue and start working on it!

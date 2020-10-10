@@ -23,9 +23,9 @@
                   {% for person in labs %}
                     <tr>
 
-                      <th scope="row" class="animate__animated animate__fadeIn animate__delay-{{person.position}}s">{{person.position}}</th>
-                      <td class="animate__animated animate__fadeIn animate__delay-{{person.position}}s">{{person.name}}</td>
-                      <td class="animate__animated animate__fadeIn animate__delay-{{person.position}}s">{{person.labs}}</td>
+                      <th scope="row">{{person.position}}</th>
+                      <td>{{person.name}}</td>
+                      <td>{{person.labs}}</td>
                     </tr>
                   {% endfor %}
               </tbody>
@@ -44,9 +44,9 @@
                   {% for person in quests %}
                     <tr>
 
-                      <th scope="row" class="animate__animated animate__faseIn animate__delay-{{person.position}}s">{{person.position}}</th>
-                      <td class="animate__animated animate__fadeIn animate__delay-{{person.position}}s">{{person.name}}</td>
-                      <td class="animate__animated animate__fadeIn animate__delay-{{person.position}}s">{{person.quests}}</td>
+                      <th scope="row">{{person.position}}</th>
+                      <td>{{person.name}}</td>
+                      <td>{{person.quests}}</td>
                     </tr>
                   {% endfor %}
               </tbody>
@@ -76,4 +76,3 @@
 
 
 {% endblock %}
-

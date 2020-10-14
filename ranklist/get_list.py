@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 import os
 import time
+from django.utils import timezone
 
 import ranklist.models
 
@@ -55,8 +56,11 @@ def execute(college):
     i=1
     for student in students:
         out = getDetailsForProfile(student.url)
+        if (student.quests == out[1] and student.stamp):
+            continue
         student.labs = out[0]
         student.quests = out[1]
+        student.stamp = timezone.now()
         student.save()
         print(f'\r{i+1}/{len(students)}', end = '')
         i+=1

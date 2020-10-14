@@ -32,7 +32,7 @@ class RanklistDetailView(DetailView):
          if college.results:
 
              labs = Student.objects.filter(col = college).order_by('-labs')[:5]
-             quests = Student.objects.filter(col = college).order_by('-quests')[:5]
+             quests = Student.objects.filter(col = college).order_by('stamp').order_by('-quests')[:5]
              i=1
              for stud1, stud2 in zip(labs, quests):
                  stud1.position = i

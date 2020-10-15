@@ -4,7 +4,9 @@
 {% block content %}
 {% if college.results %}
 
-<div class="jumbotron" id="canvas-wrap" style=" position:relative;">
+<canvas id="confetti-holder" style="position:absolute; top:0; left:0; z-index:-1;">
+</canvas>
+<div class="jumbotron" id="canvas-wrap" style=" position:relative; background-color: transparent !important;">
 
 <div class='container' >
     <h1 class="display-4">{{college.long_name}}</h1>
@@ -19,7 +21,7 @@
                   <th scope="col">Labs</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="background-color: #e9ecef;">
                   {% for person in labs %}
                     <tr>
 
@@ -40,7 +42,7 @@
                   <th scope="col">Quest</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style="background-color: #e9ecef;">
                   {% for person in quests %}
                     <tr>
 
@@ -58,8 +60,6 @@
     <p>Click here to go back home</p>
     <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Home</a>
   </div>
-  <canvas id="confetti-holder" style="position:absolute; top:0; left:0; z-index:0;">
-  </canvas>
 
 </div>
 

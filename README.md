@@ -68,3 +68,5 @@ If you want to deploy the app, you can use the following tutorial to deploy it o
 
 
 If you'd like to contribute, just make an issue and start working on it!
+
+Contributors - [Tanmay Ambadkar](https://github.com/TanmayAmbadkar), [Pushkar Patel](https://github.com/thepushkarp)

@@ -4,10 +4,9 @@
 {% block content %}
 {% if college.results %}
 
+<div class="jumbotron" id="canvas-wrap" style=" position:relative; background-color: transparent !important;">
 <canvas id="confetti-holder" style="position:absolute; top:0; left:0; z-index:-1;">
 </canvas>
-<div class="jumbotron" id="canvas-wrap" style=" position:relative; background-color: transparent !important;">
-
 <div class='container' >
     <h1 class="display-4">{{college.long_name}}</h1>
     <hr class="my-4">
@@ -26,8 +25,16 @@
                     <tr>
 
                       <th scope="row" class="animate__animated animate__fadeIn animate__delay-0.{{person.position_labs}}s">{{person.position_labs}}</th>
-                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.name}}</td>
-                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.labs}}</td>
+                      {%if person.position_labs == 1 %}
+                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position_labs}}s">{{person.name}} 🥇</td>
+                      {% elif person.position_labs == 2 %}
+                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position_labs}}s">{{person.name}} 🥈</td>
+                      {% elif person.position_labs == 3 %}
+                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position_labs}}s">{{person.name}} 🥉</td>
+                      {% else %}
+                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position_labs}}s">{{person.name}}</td>
+                      {% endif %}
+                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position_labs}}s">{{person.labs}}</td>
                     </tr>
                   {% endfor %}
               </tbody>
@@ -47,7 +54,15 @@
                     <tr>
 
                       <th scope="row" class="animate__animated animate__faseIn animate__delay-0.{{person.position}}s">{{person.position}}</th>
+                      {%if person.position == 1 %}
+                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.name}} 🥇</td>
+                      {% elif person.position == 2 %}
+                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.name}} 🥈</td>
+                      {% elif person.position == 3 %}
+                      <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.name}} 🥉</td>
+                      {% else %}
                       <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.name}}</td>
+                      {% endif %}
                       <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.quests}}</td>
                     </tr>
                   {% endfor %}

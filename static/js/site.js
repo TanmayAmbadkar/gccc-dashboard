@@ -56,7 +56,7 @@ var AppClass = function() {
     appstate.size = document.getElementById('size').value;
     appstate.width = document.getElementById('width').value;
     appstate.height = document.getElementById('height').value;
-    
+
     appstate.props = [];
     if(document.getElementById('circle').checked)
       appstate.props.push('circle');
@@ -71,7 +71,7 @@ var AppClass = function() {
       hatProp.size = parseFloat(document.getElementById('svg-size').value);
       hatProp.weight = parseFloat(document.getElementById('svg-weight').value);
       appstate.props.push(hatProp);
-      
+
     }
 
     appstate.colors = '['+document.getElementById('colors').value+']';

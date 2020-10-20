@@ -31,13 +31,22 @@ class RanklistDetailView(DetailView):
          context['college'] = college
          if college.results:
 
-             labs = Student.objects.filter(col = college).order_by('-labs')[:5]
-             quests = Student.objects.filter(col = college).order_by('stamp').order_by('-quests')[:5]
+             labs = Student.objects.filter(col = college).order_by('-labs')[:7]
+             quests = Student.objects.filter(col = college).order_by('stamp').order_by('-quests')[:7]
              i=1
+             j=1
+             lab = labs[0].labs
+             quest = quests[0].quests
              for stud1, stud2 in zip(labs, quests):
-                 stud1.position = i
-                 stud2.position = i
-                 i+=1
+                 if stud1.labs != lab:
+                     lab = stud1.labs
+                     i+=1
+                 if stud2.quests != quest:
+                     quest = stud2.quests
+                     j+=1
+
+                 stud1.position_labs = i
+                 stud2.position = j
                  stud1.save()
                  stud2.save()
 

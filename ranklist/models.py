@@ -35,6 +35,7 @@ class Student(models.Model):
     labs = models.IntegerField(default=0)
     url = models.URLField(max_length = 200)
     position = models.IntegerField(default = 1000)
+    position_labs = models.IntegerField(default = 1000)
     stamp = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):

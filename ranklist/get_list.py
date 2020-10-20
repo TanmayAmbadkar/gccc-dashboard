@@ -33,20 +33,23 @@ def getDetailsForProfile(url):
 
     name_h1 = soup.find("h1", {"class": "l-mbm"})
     labs_quests_p = soup.find("p", {"class": "public-profile__hero__details"})
-    badges_divs = soup.find_all("div", {"class": "public-profile__badge"})
+    badges_divs = soup.find_all("ql-badge")
 
 
     if name_h1 is None:
         return -1, -1
+
     c=0
     for badge in badges_divs:
-        b_arr = badge.text.strip().rsplit("\n")
-        if b_arr[0] in quests:
+        b = badge.get("badge")
+        title = b[22:b.index('\",\"', 22)]
+        print(title)
+        if title in quests:
             c+=1
 
-
     labs_quests = labs_quests_p.text.strip().rsplit("\n")
-    return int(labs_quests[0]), c
+
+    return labs_quests[0], c
 
 
 def execute(college):

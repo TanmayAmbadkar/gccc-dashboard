@@ -31,8 +31,10 @@ class RanklistDetailView(DetailView):
          context['college'] = college
          if college.results:
 
-             labs = Student.objects.filter(col = college).order_by('-labs')[:15]
-             quests = Student.objects.filter(col = college).order_by('stamp').order_by('-quests')[:15]
+
+             labs = Student.objects.filter(col = college).order_by('-labs')[:20]
+             quests = Student.objects.filter(col = college).order_by('stamp').order_by('-quests')[:20]
+
              i=1
              j=1
              lab = labs[0].labs

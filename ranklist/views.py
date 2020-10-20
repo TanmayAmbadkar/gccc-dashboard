@@ -31,8 +31,8 @@ class RanklistDetailView(DetailView):
          context['college'] = college
          if college.results:
 
-             labs = Student.objects.filter(col = college).order_by('-labs')[:7]
-             quests = Student.objects.filter(col = college).order_by('stamp').order_by('-quests')[:7]
+             labs = Student.objects.filter(col = college).order_by('-labs')[:15]
+             quests = Student.objects.filter(col = college).order_by('stamp').order_by('-quests')[:15]
              i=1
              j=1
              lab = labs[0].labs
@@ -67,6 +67,7 @@ class CollegeFormView(CreateView):
 
         form.instance.save()
         data = pd.read_csv(form.instance.csv)
+        #college = College.objects.get_or_create(short_name = form.instance.short_name)
         for i in range(len(data)):
             obj = Student.objects.create(col = form.instance, name = data['Name'][i], url = data['URL'][i], quests = 0, labs = 0)
             print(obj)
@@ -74,7 +75,6 @@ class CollegeFormView(CreateView):
         scheduler.add_job(form.instance.get_results, 'interval', minutes=5)
         scheduler.start()
         print("New job started")
-
 
         return super().form_valid(form)
 

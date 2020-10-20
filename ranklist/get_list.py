@@ -43,7 +43,6 @@ def getDetailsForProfile(url):
     for badge in badges_divs:
         b = badge.get("badge")
         title = b[22:b.index('\",\"', 22)]
-        print(title)
         if title in quests:
             c+=1
 

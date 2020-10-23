@@ -1,7 +1,7 @@
 var AppClass = function() {
   var appstate = {
     target: 'confetti-holder',
-    max: 120,
+    max: 80,
     size: 1,
     animate: true,
     props: ['circle', 'square', 'triangle', 'line'],
@@ -9,7 +9,7 @@ var AppClass = function() {
     clock: 25,
     rotate: false,
     width: window.innerWidth,
-    height: 3*window.innerHeight,
+    height: window.innerHeight,
     start_from_edge: false,
     respawn: true
   };

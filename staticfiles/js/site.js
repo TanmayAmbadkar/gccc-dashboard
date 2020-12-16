@@ -9,7 +9,7 @@ var AppClass = function() {
     clock: 25,
     rotate: false,
     width: window.innerWidth,
-    height: 3*window.innerHeight,
+    height: 10*window.innerHeight,
     start_from_edge: false,
     respawn: true
   };

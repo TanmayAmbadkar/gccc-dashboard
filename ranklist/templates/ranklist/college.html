@@ -47,6 +47,8 @@
                   <th scope="col">Position</th>
                   <th scope="col">Name</th>
                   <th scope="col">Quests</th>
+                  <!-- th scope="col">Labs</th>
+                  <th scope="col">Timestamp></th -->
                 </tr>
               </thead>
               <tbody style="background-color: #e9ecef;">
@@ -64,6 +66,8 @@
                       <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.name}}</td>
                       {% endif %}
                       <td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.quests}}</td>
+		      <!-- td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.labs}}</td>
+			<td class="animate__animated animate__fadeIn animate__delay-0.{{person.position}}s">{{person.stamp}}</td -->
                     </tr>
                   {% endfor %}
               </tbody>
